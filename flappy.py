@@ -74,20 +74,24 @@ clock = pygame.time.Clock()
 game_font = pygame.font.Font('04B_19.ttf',40)
 
 # Game Variables
-gravity = 0.08
+gravity = 0.05
 bird_movement = 0
 game_active = True
 score = 0
 high_score = 0
 
-bg_surface = pygame.image.load('assets/background-day.png').convert()
+bg_surface = pygame.image.load('assets/BACKGROUND.png').convert()
+bg_surface = pygame.transform.scale(bg_surface, (288, 512)) 
 floor_surface = pygame.image.load('assets/base.png').convert()
 
 floor_x_pos = 0
 
-bird_downflap = pygame.image.load('assets/bluebird-downflap.png').convert_alpha()
-bird_midflap = pygame.image.load('assets/bluebird-midflap.png').convert_alpha()
-bird_upflap = pygame.image.load('assets/bluebird-upflap.png').convert_alpha()
+bird_downflap = pygame.image.load('assets/SHARK.png').convert_alpha()
+bird_downflap = pygame.transform.scale(bird_downflap, (200, 170))
+bird_midflap = pygame.image.load('assets/SHARK.png').convert_alpha()
+bird_midflap = pygame.transform.scale(bird_midflap, (200, 170))
+bird_upflap = pygame.image.load('assets/SHARK.png').convert_alpha()
+bird_upflap = pygame.transform.scale(bird_upflap, (200, 170))
 bird_frames = [bird_downflap,bird_midflap,bird_upflap]
 bird_index = 0
 bird_surface = bird_frames[bird_index]
@@ -100,7 +104,7 @@ pygame.time.set_timer(BIRDFLAP,200)
 # bird_surface = pygame.transform.scale2x(bird_surface)
 # bird_rect = bird_surface.get_rect(center = (100,512))
 
-pipe_surface = pygame.image.load('assets/pipe-green.png')
+pipe_surface = pygame.image.load('assets/KELP.png').convert()
 pipe_list = []
 SPAWNPIPE = pygame.USEREVENT
 pygame.time.set_timer(SPAWNPIPE,1200)
@@ -109,7 +113,6 @@ pipe_height = [200,300,400]
 game_over_surface = pygame.image.load('assets/message.png').convert_alpha()
 game_over_rect = game_over_surface.get_rect(center = (144,256))
 
-flap_sound = pygame.mixer.Sound('sound/sfx_wing.wav')
 death_sound = pygame.mixer.Sound('sound/sfx_hit.wav')
 score_sound = pygame.mixer.Sound('sound/sfx_point.wav')
 score_sound_countdown = 100
@@ -122,8 +125,12 @@ while True:
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_SPACE and game_active:
 				bird_movement = 0
-				bird_movement -= 3.5
-				flap_sound.play()
+				bird_movement -= 2
+				
+			if event.key == pygame.K_u and game_active:
+				bird_movement = 0
+				bird_movement -= 3
+				
 			if event.key == pygame.K_SPACE and game_active == False:
 				game_active = True
 				pipe_list.clear()
