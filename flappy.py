@@ -87,11 +87,11 @@ floor_surface = pygame.image.load('assets/base.png').convert()
 floor_x_pos = 0
 
 bird_downflap = pygame.image.load('assets/SHARK.png').convert_alpha()
-bird_downflap = pygame.transform.scale(bird_downflap, (200, 170))
+bird_downflap = pygame.transform.scale(bird_downflap, (64,48))
 bird_midflap = pygame.image.load('assets/SHARK.png').convert_alpha()
-bird_midflap = pygame.transform.scale(bird_midflap, (200, 170))
+bird_midflap = pygame.transform.scale(bird_midflap, (64,48))
 bird_upflap = pygame.image.load('assets/SHARK.png').convert_alpha()
-bird_upflap = pygame.transform.scale(bird_upflap, (200, 170))
+bird_upflap = pygame.transform.scale(bird_upflap, (64,48))
 bird_frames = [bird_downflap,bird_midflap,bird_upflap]
 bird_index = 0
 bird_surface = bird_frames[bird_index]
@@ -105,6 +105,7 @@ pygame.time.set_timer(BIRDFLAP,200)
 # bird_rect = bird_surface.get_rect(center = (100,512))
 
 pipe_surface = pygame.image.load('assets/KELP2.png').convert_alpha()
+pipe_surface = pygame.transform.scale(pipe_surface, (52, 320))
 pipe_list = []
 SPAWNPIPE = pygame.USEREVENT
 pygame.time.set_timer(SPAWNPIPE,1200)
